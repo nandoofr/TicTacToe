@@ -1,7 +1,5 @@
 function bestMove()
 {
-  //buat npc nya jalan
-  // AI to make its turn
   let bestScore = -Infinity;
   let move;
 
@@ -22,7 +20,6 @@ function bestMove()
           move = { i, j };
         }
       }
-      // Is the spot available?
       else
       {
         if (board[i][j] == '')
@@ -43,7 +40,6 @@ function bestMove()
   currentPlayer = human;
 }
 
-//ini teori minimax, kalau musuh jalan +1, kalau kita jalan harus memperkecil kemungkinan musuh menang -1
 let scores =
 {
   X: 1,
@@ -66,7 +62,6 @@ function minimax(board, depth, isMaximizing)
     {
       for (let j = 0; j < 3; j++)
       {
-        // Is the spot available?
         if (board[i][j] == '')
         {
           board[i][j] = ai;
@@ -85,7 +80,6 @@ function minimax(board, depth, isMaximizing)
   {
     for (let j = 0; j < 3; j++)
     {
-       // Is the spot available?
        if (board[i][j] == '')
        {
           board[i][j] = human;

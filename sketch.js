@@ -1,4 +1,3 @@
-//ini buat definisiin kolom array baris, buat ngecek misalkan kolom 1 baris 1 berarti [0][0] = '' (berarti kosong)
 let board = 
 [
   ['', '', ''],
@@ -6,33 +5,38 @@ let board =
   ['', '', '']
 ];
 
-let w; // = width / 3;
-let h; // = height / 3;
+let w;
+let h;
 
 let ai = 'X';
 let human = 'O';
 let currentPlayer = human;
 
-//bikin 500x500pixel, w dibagi 3 buat bikin baris 3, h dibagi 3 buat bikin kolom 3, bestmove buat jalanin function musuh buat jalan
 function setup() 
 {
   createCanvas(500, 500);
   w = width / 3;
   h = height / 3;
-  bestMove();
+  i = Math.floor(Math.random() * 2);
+  if (i==1)
+  {
+    //bestMove();
+  }
+  else
+  {
+    bestMove();
+  }
 }
 
-//ini gatau
 function equals3(a, b, c) 
 {
   return a == b && b == c && a != '';
 }
 
-//buat cek pemenang
 function checkWinner() 
 {
   let winner = null;
-  // horizontal
+  // Horizontal
   for (let i = 0; i < 3; i++) 
   {
     if (equals3(board[i][0], board[i][1], board[i][2]))
@@ -59,7 +63,6 @@ function checkWinner()
       winner = board[2][0];
     }
 
-  //openspot buat ngecek kotak yang masih kosong
   let openSpots = 0;
   for (let i = 0; i < 3; i++)
   {
@@ -82,15 +85,12 @@ function checkWinner()
   }
 }
 
-//buat deteksi pencetan mouse
 function mousePressed()
 {
   if (currentPlayer == human)
   {
-    // Human make turn
     let i = floor(mouseX / w);
     let j = floor(mouseY / h);
-    // If valid turn
     if (board[i][j] == '')
     {
       board[i][j] = human;
@@ -100,7 +100,6 @@ function mousePressed()
   }
 }
 
-//buat pewarnaan background dan bikin garis
 function draw()
 {
   background(0, 189,172);
@@ -111,7 +110,6 @@ function draw()
   line(0, h, width, h);
   line(0, h * 2, width, h * 2);
   
-  //ini buat bikin garisnya tapi susah banget
   for (let j = 0; j < 3; j++)
   {
     for (let i = 0; i < 3; i++)
@@ -133,7 +131,6 @@ function draw()
     }
   }
 
-  //buat cek ada pemenang atau tidak dan memberi selamat kalau menang
   let result = checkWinner();
   if (result != null)
   {
